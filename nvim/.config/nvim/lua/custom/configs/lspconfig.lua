@@ -3,6 +3,7 @@ local config = require("plugins.configs.lspconfig")
 --local capabilities = config.capabilities
 
 local lspconfig = require("lspconfig")
+local util = require("lspconfig/util")
 
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
@@ -89,4 +90,44 @@ lspconfig.pyright.setup({
   },
 })
 
+--lspconfig.clangd.setup({
+--  cmd = {
+--    "clangd",
+--    "--compile-commands-dir=.",
+--    "--query-driver=/usr/bin/g++", -- <-- To WYMUSZA użycie twojego systemowego kompilatora
+--    "--clang-tidy",
+--    "--header-insertion=never",
+--    "--all-scopes-completion",
+--  },
+--  on_attach = function(client, bufnr)
+--    client.server_capabilities.signatureHelpProvider = false
+--    on_attach(client, bufnr)
+--  end,
+--  capabilities=capabilities,
+--})
+
+--lspconfig.clangd.setup({
+--  on_attach = on_attach,
+--  capabilities = capabilities,
+--})
+lspconfig.clangd.setup({
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--compile-commands-dir=.",
+    "--query-driver=/usr/bin/g++",
+    "--all-scopes-completion",
+    "--clang-tidy",
+    "--header-insertion=never",
+    "--completion-style=detailed",
+    "--pch-storage=memory",
+  },
+  root_dir = util.root_pattern(
+    'compile_commands.json', 
+    '.clangd', 
+    'WORKSPACE' 
+  ),
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
 

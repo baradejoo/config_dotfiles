@@ -13,6 +13,8 @@ local plugins = {
         "mypy",
         "ruff",
         "pyright",
+        "clangd",
+        "clang-format",
       },
     },
   },

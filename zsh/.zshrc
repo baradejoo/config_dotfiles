@@ -33,3 +33,12 @@ bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 
 alias ls="eza --color=always --icons=always"
+
+export SOPS_AGE_KEY_FILE=$HOME/.sops/key.txt
+export PATH="$PATH:/home/kamilbaradziej/vcpkg"
+export PATH=$HOME/.local/bin:$PATH
+export PATH="/home/kamilbaradziej/.pixi/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
