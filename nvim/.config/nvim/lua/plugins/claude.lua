@@ -4,28 +4,41 @@
 -- ============================================================
 
 return {
-	{
-		"coder/claudecode.nvim",
-		dependencies = { "folke/snacks.nvim" },
-		lazy = false,
+  {
+    "coder/claudecode.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    lazy = false,
+    config = true,
 
-		opts = {
-			port = nil,
-			terminal_cmd = "vsplit",
-			auto_sync_file = true,
-			diff_opts = {
-				auto_close_on_accept = true,
-				show_diff_stats = true,
-				vertical_split = true,
-			},
-		},
+    opts = {
+      terminal_cmd = vim.fn.expand("~/.local/bin/claude"),
+      auto_start   = true,
+      log_level    = "info",
 
-		keys = {
-			{ "<leader>ac", "<cmd>ClaudeCode<CR>", desc = "Toggle Claude Code" },
-			{ "<leader>as", "<cmd>ClaudeCodeSend<CR>", mode = "v", desc = "Send selection to Claude" },
-			{ "<leader>an", "<cmd>ClaudeCodeNew<CR>", desc = "New Claude session" },
-			{ "<leader>ad", "<cmd>ClaudeCodeDiff<CR>", desc = "Diff with Claude" },
-			{ "<leader>ax", "<cmd>ClaudeCodeStop<CR>", desc = "Stop Claude" },
-		},
-	},
+      terminal = {
+        split_side             = "right",
+        split_width_percentage = 0.35,
+        provider               = "snacks",
+        auto_close             = true,
+      },
+
+      diff_opts = {
+        layout           = "vertical",
+        open_in_new_tab  = false,
+        keep_terminal_focus = false,
+      },
+    },
+
+    keys = {
+      { "<leader>ac", "<cmd>ClaudeCode<cr>",            desc = "Toggle Claude" },
+      { "<leader>af", "<cmd>ClaudeCodeFocus<cr>",       desc = "Focus Claude" },
+      { "<leader>ar", "<cmd>ClaudeCode --resume<cr>",   desc = "Resume Claude" },
+      { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select model" },
+      { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>",       desc = "Add buffer to Claude" },
+      { "<leader>as", "<cmd>ClaudeCodeSend<cr>",        mode = "v", desc = "Send selection to Claude" },
+      { "<leader>as", "<cmd>ClaudeCodeTreeAdd<cr>",     desc = "Add file from tree", ft = { "neo-tree" } },
+      { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>",  desc = "Accept diff" },
+      { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>",    desc = "Deny diff" },
+    },
+  },
 }
