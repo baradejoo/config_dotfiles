@@ -43,7 +43,7 @@ return {
     },
 
     format_on_save = function(bufnr)
-      local ignore_ft = { "sql", "java" }
+      local ignore_ft = { "sql", "java", "yaml", "dockerfile" }
       if vim.tbl_contains(ignore_ft, vim.bo[bufnr].filetype) then return end
       if vim.api.nvim_buf_line_count(bufnr) > 5000 then return end
       return { timeout_ms = 1000, lsp_fallback = true }
