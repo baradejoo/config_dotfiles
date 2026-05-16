@@ -62,14 +62,28 @@ return {
 			mappings = {
 				["<space>"] = "none", -- Do not conflict with <leader>
 				["<"] = function(state)
-					local new_width = math.max(10, vim.api.nvim_win_get_width(0) - 5)
+					local win = vim.api.nvim_get_current_win()
+					local new_width = math.max(10, vim.api.nvim_win_get_width(win) - 5)
 					state.window.width = new_width
-					vim.api.nvim_win_set_width(0, new_width)
+					local ok, cfg = pcall(require, "neo-tree.config")
+					if ok and cfg.config then cfg.config.window.width = new_width end
+					vim.schedule(function()
+						if vim.api.nvim_win_is_valid(win) then
+							vim.api.nvim_win_set_width(win, new_width)
+						end
+					end)
 				end,
 				[">"] = function(state)
-					local new_width = vim.api.nvim_win_get_width(0) + 5
+					local win = vim.api.nvim_get_current_win()
+					local new_width = vim.api.nvim_win_get_width(win) + 5
 					state.window.width = new_width
-					vim.api.nvim_win_set_width(0, new_width)
+					local ok, cfg = pcall(require, "neo-tree.config")
+					if ok and cfg.config then cfg.config.window.width = new_width end
+					vim.schedule(function()
+						if vim.api.nvim_win_is_valid(win) then
+							vim.api.nvim_win_set_width(win, new_width)
+						end
+					end)
 				end,
 				["l"] = "open",
 				["h"] = "close_node",
