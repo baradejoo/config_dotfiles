@@ -47,6 +47,11 @@ map("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
 map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 map("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Diagnostic list" })
 
+map("n", "<leader>lr", function()
+	vim.lsp.stop_client(vim.lsp.get_clients())
+	vim.cmd("e")
+end, { desc = "Restart LSP" })
+
 -- ── LSP keymaps are set in LspAttach (see plugins/lsp.lua) ───
 
 -- ── Snacks keymaps are set in plugins/snacks.lua ─────────────
