@@ -6,6 +6,12 @@ import = [
 [env]
 TERM = "xterm-256color"
 
+# Start inside tmux: attach to session "main" or create it (continuum restores the
+# rest after a reboot). Falls back to plain zsh if tmux is missing or exits with an error.
+[terminal.shell]
+program = "/bin/zsh"
+args = ["-l", "-c", "tmux new-session -A -s main || exec zsh"]
+
 [window]
 padding.x = 10
 padding.y = 28  # room for the transparent title bar buttons

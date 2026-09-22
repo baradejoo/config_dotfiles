@@ -16,3 +16,9 @@
 [submodule "oh-my-zsh/.oh-my-zsh/custom/plugins/fzf-tab"]
 	path = oh-my-zsh/.oh-my-zsh/custom/plugins/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab.git
+[submodule "tmux/.tmux/plugins/tmux-resurrect"]
+	path = tmux/.tmux/plugins/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect.git
+[submodule "tmux/.tmux/plugins/tmux-continuum"]
+	path = tmux/.tmux/plugins/tmux-continuum
+	url = https://github.com/tmux-plugins/tmux-continuum.git

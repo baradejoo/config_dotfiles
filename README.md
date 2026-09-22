@@ -10,9 +10,9 @@ They work on macOS (Apple Silicon and Intel) and Linux.
 | `zsh`           | `~/.zshrc`                  | completion, fzf, fzf-tab, zoxide, history, lazy-loaded nvm |
 | `powerlevel10k` | `~/.powerlevel10k`, `~/.p10k.zsh` | prompt theme (submodule) and its config            |
 | `oh-my-zsh`     | `~/.oh-my-zsh/custom/plugins` | only the plugins (submodules): autosuggestions, syntax-highlighting, completions, fzf-tab. oh-my-zsh itself is **not** used |
-| `tmux`          | `~/.tmux.conf`              | backtick prefix, vi copy mode, system clipboard          |
+| `tmux`          | `~/.tmux.conf`, `~/.tmux`   | backtick prefix, vi copy mode, system clipboard, sessions survive reboots (resurrect + continuum, submodules) |
 | `nvim`          | `~/.config/nvim`            | lazy.nvim + Mason, needs Neovim **0.12+**, see [its README](nvim/.config/nvim/README.md) |
-| `alacritty`     | `~/.config/alacritty`       | theme `hardhacker` (submodule), LiterationMono Nerd Font |
+| `alacritty`     | `~/.config/alacritty`       | theme `hardhacker` (submodule), LiterationMono Nerd Font, starts inside tmux session `main` |
 | `git`           | `~/.config/git/config`      | delta as pager; your `~/.gitconfig` (name, email) is left alone and still wins |
 
 ## Install
@@ -95,6 +95,15 @@ Run `stow` from the repo root. To remove a package's links, use `stow -D <packag
 | `` ` `` `v V h H t` | layouts: even-h, main-v, even-v, main-h, tiled |
 | `` ` `` `r`       | reload config                        |
 | `` ` `` `[`, then `v` … `y` | copy mode: select, copy to system clipboard |
+| `` ` `` `d`       | detach (session keeps running, `tmux a` to come back) |
+| `` ` `` `Ctrl+s` / `Ctrl+r` | save / restore sessions now (tmux-resurrect) |
+
+Sessions are also saved automatically every 15 minutes and restored when tmux starts after
+a reboot (tmux-continuum). Windows, panes, working directories and pane contents come back;
+running programs (servers, ssh) have to be started again. Saves live in `~/.local/share/tmux/resurrect`.
+
+Alacritty opens straight into the tmux session `main` (attaching if it already exists).
+To get a plain shell instead, remove the `[terminal.shell]` block from `alacritty.toml`.
 
 `w`, `s` and `q` replace tmux's defaults (window tree, session tree, `display-panes`).
 Use `` ` `` `(` / `)` to switch sessions instead.
