@@ -11,7 +11,7 @@ return {
     config = true,
 
     opts = {
-      terminal_cmd = vim.fn.expand("~/.local/bin/claude"),
+      terminal_cmd = "claude",  -- resolved from PATH
       auto_start   = true,
       log_level    = "info",
 

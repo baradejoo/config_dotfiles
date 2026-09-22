@@ -1,3 +1,4 @@
+[general]
 import = [
   "~/.config/alacritty/themes/themes/hardhacker.toml"
 ]
@@ -5,18 +6,32 @@ import = [
 [env]
 TERM = "xterm-256color"
 
+# Start inside tmux: attach to session "main" or create it (continuum restores the
+# rest after a reboot). After detaching (prefix + d) or if tmux is missing, the
+# window stays open with a plain zsh; `tmux a` attaches again.
+[terminal.shell]
+program = "/bin/zsh"
+args = ["-l", "-c", "tmux new-session -A -s main; exec zsh"]
+
 [window]
 padding.x = 10
-padding.y = 10
+padding.y = 28  # room for the transparent title bar buttons
 
-decorations = "Buttonless"
+decorations = "Transparent"
+startup_mode = "Maximized"
 
-opacity = 0.8
-blur = true
+opacity = 0.7
+blur = false
 
 option_as_alt = "Both"
 
 [font]
 normal.family = "LiterationMono Nerd Font"
 
-size = 12
+size = 13
+
+# Shift+Enter inserts a newline in Claude Code (added by its /terminal-setup)
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"

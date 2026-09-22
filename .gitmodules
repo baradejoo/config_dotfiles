@@ -10,3 +10,15 @@
 [submodule "alacritty/.config/alacritty/themes"]
   path = alacritty/.config/alacritty/themes
   url = https://github.com/alacritty/alacritty-theme.git
+[submodule "oh-my-zsh/.oh-my-zsh/custom/plugins/zsh-completions"]
+	path = oh-my-zsh/.oh-my-zsh/custom/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git
+[submodule "oh-my-zsh/.oh-my-zsh/custom/plugins/fzf-tab"]
+	path = oh-my-zsh/.oh-my-zsh/custom/plugins/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab.git
+[submodule "tmux/.tmux/plugins/tmux-resurrect"]
+	path = tmux/.tmux/plugins/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect.git
+[submodule "tmux/.tmux/plugins/tmux-continuum"]
+	path = tmux/.tmux/plugins/tmux-continuum
+	url = https://github.com/tmux-plugins/tmux-continuum.git

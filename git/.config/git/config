@@ -1,0 +1,16 @@
+# Shared git settings. Personal ones (user.name, user.email, credential helper)
+# stay in ~/.gitconfig, which git reads after this file and can override it.
+
+# delta: syntax-highlighted diffs in git diff / log -p / show / add -p
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true      # n / N jump between files
+	line-numbers = true
+	side-by-side = false # toggle per command: git -c delta.side-by-side=true diff
+[merge]
+	conflictStyle = zdiff3
+[diff]
+	colorMoved = default
