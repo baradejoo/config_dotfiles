@@ -7,10 +7,11 @@ import = [
 TERM = "xterm-256color"
 
 # Start inside tmux: attach to session "main" or create it (continuum restores the
-# rest after a reboot). Falls back to plain zsh if tmux is missing or exits with an error.
+# rest after a reboot). After detaching (prefix + d) or if tmux is missing, the
+# window stays open with a plain zsh; `tmux a` attaches again.
 [terminal.shell]
 program = "/bin/zsh"
-args = ["-l", "-c", "tmux new-session -A -s main || exec zsh"]
+args = ["-l", "-c", "tmux new-session -A -s main; exec zsh"]
 
 [window]
 padding.x = 10

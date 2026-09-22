@@ -103,6 +103,7 @@ a reboot (tmux-continuum). Windows, panes, working directories and pane contents
 running programs (servers, ssh) have to be started again. Saves live in `~/.local/share/tmux/resurrect`.
 
 Alacritty opens straight into the tmux session `main` (attaching if it already exists).
+After detaching, the window stays open with a plain zsh.
 To get a plain shell instead, remove the `[terminal.shell]` block from `alacritty.toml`.
 
 `w`, `s` and `q` replace tmux's defaults (window tree, session tree, `display-panes`).
