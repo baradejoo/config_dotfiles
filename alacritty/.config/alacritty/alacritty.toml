@@ -22,3 +22,9 @@ option_as_alt = "Both"
 normal.family = "LiterationMono Nerd Font"
 
 size = 13
+
+# Shift+Enter inserts a newline in Claude Code (added by its /terminal-setup)
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"
