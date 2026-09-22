@@ -35,6 +35,9 @@ bindkey "^[[B" history-search-forward
 
 command -v eza >/dev/null && alias ls="eza --color=always --icons=always"
 
+# English messages from CLI tools (git, brew, ...); dates/numbers keep the system locale
+export LC_MESSAGES=en_US.UTF-8
+
 export SOPS_AGE_KEY_FILE=$HOME/.sops/key.txt
 
 # nvm: sourcing nvm.sh costs a few hundred ms, so only put the newest installed
