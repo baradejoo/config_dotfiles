@@ -7,7 +7,7 @@
 set -euo pipefail
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PACKAGES=(zsh powerlevel10k oh-my-zsh tmux nvim alacritty)
+PACKAGES=(zsh powerlevel10k oh-my-zsh tmux nvim alacritty git)
 NVIM_MIN="0.12"
 BACKUP_DIR="$HOME/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
 INSTALL_DEPS=1
@@ -109,23 +109,22 @@ install_deps_linux() {
     $sudo apt-get update
     $sudo apt-get install -y git stow zsh tmux curl unzip xz-utils build-essential \
       ripgrep fd-find fzf nodejs npm python3 python3-venv fontconfig
-    for pkg in eza alacritty; do
+    for pkg in eza alacritty zoxide bat git-delta lazygit; do
       $sudo apt-get install -y "$pkg" || warn "$pkg not available in apt, install it manually"
     done
-    # Debian/Ubuntu ship fd as `fdfind`
-    if have fdfind && ! have fd; then
-      mkdir -p "$HOME/.local/bin"
-      ln -sf "$(command -v fdfind)" "$HOME/.local/bin/fd"
-    fi
+    # Debian/Ubuntu ship fd as `fdfind` and bat as `batcat`
+    mkdir -p "$HOME/.local/bin"
+    if have fdfind && ! have fd; then ln -sf "$(command -v fdfind)" "$HOME/.local/bin/fd"; fi
+    if have batcat && ! have bat; then ln -sf "$(command -v batcat)" "$HOME/.local/bin/bat"; fi
   elif have pacman; then
     info "Installing packages with pacman"
     $sudo pacman -S --needed --noconfirm git stow zsh tmux curl unzip base-devel \
-      ripgrep fd fzf eza nodejs npm python neovim alacritty fontconfig
+      ripgrep fd fzf eza zoxide bat git-delta lazygit nodejs npm python neovim alacritty fontconfig
   elif have dnf; then
     info "Installing packages with dnf"
     $sudo dnf install -y git stow zsh tmux curl unzip gcc make \
       ripgrep fd-find fzf nodejs npm python3 fontconfig
-    for pkg in eza alacritty; do
+    for pkg in eza alacritty zoxide bat git-delta lazygit; do
       $sudo dnf install -y "$pkg" || warn "$pkg not available in dnf, install it manually"
     done
   else

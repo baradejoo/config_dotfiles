@@ -7,12 +7,13 @@ They work on macOS (Apple Silicon and Intel) and Linux.
 
 | Package         | Links to                    | Notes                                                    |
 |-----------------|-----------------------------|----------------------------------------------------------|
-| `zsh`           | `~/.zshrc`                  | history, PATH, lazy-loaded nvm, `eza` alias              |
+| `zsh`           | `~/.zshrc`                  | completion, fzf, fzf-tab, zoxide, history, lazy-loaded nvm |
 | `powerlevel10k` | `~/.powerlevel10k`, `~/.p10k.zsh` | prompt theme (submodule) and its config            |
-| `oh-my-zsh`     | `~/.oh-my-zsh/custom/plugins` | only the plugins (submodules), oh-my-zsh itself is **not** used |
+| `oh-my-zsh`     | `~/.oh-my-zsh/custom/plugins` | only the plugins (submodules): autosuggestions, syntax-highlighting, completions, fzf-tab. oh-my-zsh itself is **not** used |
 | `tmux`          | `~/.tmux.conf`              | backtick prefix, vi copy mode, system clipboard          |
 | `nvim`          | `~/.config/nvim`            | lazy.nvim + Mason, needs Neovim **0.12+**, see [its README](nvim/.config/nvim/README.md) |
 | `alacritty`     | `~/.config/alacritty`       | theme `hardhacker` (submodule), LiterationMono Nerd Font |
+| `git`           | `~/.config/git/config`      | delta as pager; your `~/.gitconfig` (name, email) is left alone and still wins |
 
 ## Install
 
@@ -53,6 +54,9 @@ Run `stow` from the repo root. To remove a package's links, use `stow -D <packag
 - **Don't run the oh-my-zsh installer.** It overwrites `~/.zshrc` and breaks the stow link.
 - Machine-specific settings (conda, work tokens, etc.) don't belong in the repo. Add them to `~/.zprofile`
   or `~/.zshenv`.
+- **Tools used from Neovim** must be on your PATH:
+  - `lazygit` for `<leader>gg` / `<leader>gf` / `<leader>gl` (snacks.nvim). Installed by `install.sh`.
+  - Claude Code CLI, see below.
 - **Claude Code CLI**: the `claudecode.nvim` plugin (`<leader>a…` bindings) runs `claude` from your PATH.
   `install.sh` doesn't install it, so install it yourself (the official installer puts it in `~/.local/bin`,
   which `.zshrc` adds to PATH):
@@ -63,6 +67,18 @@ Run `stow` from the repo root. To remove a package's links, use `stow -D <packag
   `node`, `python`, `curl`, `unzip` and a C compiler (Xcode Command Line Tools / `build-essential`).
 
 ## Key bindings
+
+### zsh
+
+| Keys / command    | Action                                               |
+|-------------------|------------------------------------------------------|
+| <kbd>Tab</kbd>    | completion in an fzf window (fzf-tab), type to filter |
+| <kbd>Ctrl+R</kbd> | fuzzy search in history                              |
+| <kbd>Ctrl+T</kbd> | insert a file path (with `bat` preview)              |
+| <kbd>Alt+C</kbd>  | cd into a subdirectory (with tree preview)           |
+| <kbd>↑</kbd> / <kbd>↓</kbd> | history filtered by what's already typed   |
+| `z <part>`        | jump to a frequently used directory (zoxide), `zi` to pick with fzf |
+| `cat`, `ls`       | aliased to `bat` and `eza` when installed            |
 
 ### tmux (prefix: <kbd>`</kbd> backtick, press twice to type one)
 

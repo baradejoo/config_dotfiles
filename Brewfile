@@ -12,6 +12,12 @@ brew "eza"
 brew "ripgrep"
 brew "fd"
 brew "fzf"
+brew "zoxide"
+brew "bat"
+brew "git-delta"
+
+# used from nvim: lazygit via snacks.nvim (<leader>gg)
+brew "lazygit"
 
 # needed by Mason (pyright, etc.) in nvim
 brew "node"
