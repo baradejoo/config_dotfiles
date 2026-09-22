@@ -53,6 +53,11 @@ Run `stow` from the repo root. To remove a package's links, use `stow -D <packag
 - **Don't run the oh-my-zsh installer.** It overwrites `~/.zshrc` and breaks the stow link.
 - Machine-specific settings (conda, work tokens, etc.) don't belong in the repo. Add them to `~/.zprofile`
   or `~/.zshenv`.
+- **Claude Code CLI**: the `claudecode.nvim` plugin (`<leader>a…` bindings) runs `~/.local/bin/claude`.
+  `install.sh` doesn't install it, so install it yourself (the official installer puts it in that path):
+  ```bash
+  curl -fsSL https://claude.ai/install.sh | bash
+  ```
 - On first start Neovim's Mason installs the LSP servers (clangd, pyright, ruff, lua-ls). This needs
   `node`, `python`, `curl`, `unzip` and a C compiler (Xcode Command Line Tools / `build-essential`).
 
