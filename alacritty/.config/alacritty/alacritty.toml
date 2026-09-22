@@ -13,7 +13,7 @@ padding.y = 28  # room for the transparent title bar buttons
 decorations = "Transparent"
 startup_mode = "Maximized"
 
-opacity = 0.8
+opacity = 0.7
 blur = true
 
 option_as_alt = "Both"
