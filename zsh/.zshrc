@@ -102,3 +102,4 @@ command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 # zsh-syntax-highlighting must be sourced last
 [[ -r $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] &&
   source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export PATH="$HOME/.local/bin:$PATH"

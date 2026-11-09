@@ -183,3 +183,7 @@ fi
 [[ -d "$BACKUP_DIR" ]] && info "Old files saved in $BACKUP_DIR"
 [[ "$(basename "${SHELL:-}")" == zsh ]] || warn "your login shell is not zsh, change it with: chsh -s \"\$(command -v zsh)\""
 info "Done. Open a new terminal (or run: exec zsh)."
+if [[ "$OS" == Darwin ]]; then
+  info "Note: on macOS newly installed fonts (Nerd Font) may not show up in running apps."
+  info "      If icons are missing, quit and reopen the app (Cmd+Q) or log out and log back in."
+fi
